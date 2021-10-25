@@ -4,5 +4,4 @@ class Retailer {
             this.firstName = firstName;
     }
 }
-
 module.exports = Retailer;
