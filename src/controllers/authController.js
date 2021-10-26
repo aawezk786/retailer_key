@@ -19,7 +19,7 @@ const addRetailer = async (req, res, next) => {
                 gzip: true
               })
              retailerUrl = await bucketFile.getSignedUrl({
-                action: "write",
+                action: "read",
                 expires: "01-01-2080"
               });
         }
@@ -30,11 +30,10 @@ const addRetailer = async (req, res, next) => {
                 gzip: true
               })
               shopUrl = await bucketFile.getSignedUrl({
-                action: "write",
+                action: "read",
                 expires: "01-01-2080"
               });
         } 
-        console.log(req.files)
         let hashedPassword;
         const salt = await bcrypt.genSalt(12);
         hashedPassword = await bcrypt.hash(req.body.password, salt);
@@ -45,8 +44,8 @@ const addRetailer = async (req, res, next) => {
             password : hashedPassword,
             shopName : req.body.shopName,
             shopAddress : req.body.shopAddress,
-            retailer_photo : retailerUrl[0] ? retailerUrl[0] : "",
-            shop_photo : shopUrl[0] ? shopUrl[0] : "",
+            retailer_photo : retailerUrl ? retailerUrl[0] : "",
+            shop_photo : shopUrl ? shopUrl[0] : "",
             dob : req.body.dob,
             gender : req.body.gender,
             pan_no : req.body.pan_no,
