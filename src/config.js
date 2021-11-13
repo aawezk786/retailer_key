@@ -1,6 +1,8 @@
 'use strict';
  const dotenv = require('dotenv');
+ const firebase = require('firebase-admin');
  const assert = require('assert');
+ var serviceAccount = require("../addons/service.json");
  dotenv.config();
  
  const {
@@ -25,6 +27,7 @@
      url: HOST_URL,
      firebaseConfig: {
          apiKey: API_KEY,
+         credential: firebase.credential.cert(serviceAccount),
          authDomain: AUTH_DOMAIN,
          databaseURL: DATABASE_URL,
          projectId: PROJECT_ID,

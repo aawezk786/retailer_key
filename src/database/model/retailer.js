@@ -1,8 +1,7 @@
 class Retailer {
-    constructor(id, firstName) {
+    constructor(id, name) {
             this.id = id;
-            this.firstName = firstName;
+            this.name = name;
     }
 }
-
 module.exports = Retailer;
